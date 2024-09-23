@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://rkdnhqgf2hpj" path="res://Mob.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://4vwrqjegqwpj" path="res://Player.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://ccqoreueuxdb7" path="res://HUD.tscn" id="4"]
-[ext_resource type="AudioStream" uid="uid://q2pf4fr8d0ks" path="res://art/House In a Forest Loop.ogg" id="5"]
-[ext_resource type="AudioStream" uid="uid://dw26fpygeag8o" path="res://art/gameover.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://caf5hvi38h4m2" path="res://art/PacMan Original Theme [ ezmp3.cc ].ogg" id="5_5ria6"]
+[ext_resource type="AudioStream" uid="uid://c43lo55hidsjd" path="res://art/Pac-Man Death - Sound Effect (HD).wav" id="6_k8gy6"]
 
 [sub_resource type="Curve2D" id="1"]
 _data = {
@@ -47,10 +47,10 @@ curve = SubResource("1")
 [node name="HUD" parent="." instance=ExtResource("4")]
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5")
+stream = ExtResource("5_5ria6")
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6")
+stream = ExtResource("6_k8gy6")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]

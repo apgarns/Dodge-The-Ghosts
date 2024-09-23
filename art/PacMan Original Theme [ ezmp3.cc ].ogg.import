@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://caf5hvi38h4m2"
+path="res://.godot/imported/PacMan Original Theme [ ezmp3.cc ].ogg-25fac3d1aa38e1795c41ee9d46842e6b.oggvorbisstr"
+
+[deps]
+
+source_file="res://art/PacMan Original Theme [ ezmp3.cc ].ogg"
+dest_files=["res://.godot/imported/PacMan Original Theme [ ezmp3.cc ].ogg-25fac3d1aa38e1795c41ee9d46842e6b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

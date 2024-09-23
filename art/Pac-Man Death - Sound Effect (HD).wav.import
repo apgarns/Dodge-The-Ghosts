@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c43lo55hidsjd"
+path="res://.godot/imported/Pac-Man Death - Sound Effect (HD).wav-b891231be7d27deba8693262f88a0f32.sample"
+
+[deps]
+
+source_file="res://art/Pac-Man Death - Sound Effect (HD).wav"
+dest_files=["res://.godot/imported/Pac-Man Death - Sound Effect (HD).wav-b891231be7d27deba8693262f88a0f32.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
