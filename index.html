@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dodge the Ghosts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        #gameCanvas {
+            border: 2px solid #000;
+            background-color: #fff;
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dodge the Ghosts</h1>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <br>
+    <button class="button" onclick="startGame()">Start Game</button>
+    <button class="button" onclick="resetGame()">Reset Game</button>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function startGame() {
+            // Game logic to start the game
+            console.log('Game Started');
+        }
+
+        function resetGame() {
+            // Game logic to reset the game
+            console.log('Game Reset');
+        }
+
+        // Additional game logic goes here
+    </script>
+</body>
+</html>
+<script>
+    const player = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        size: 20,
+        dx: 0,
+        dy: 0,
+        speed: 4
+    };
+
+    const ghosts = [
+        { x: 100, y: 100, size: 20, dx: 2, dy: 2 },
+        { x: 700, y: 100, size: 20, dx: -2, dy: 2 },
+        { x: 100, y: 500, size: 20, dx: 2, dy: -2 },
+        { x: 700, y: 500, size: 20, dx: -2, dy: -2 }
+    ];
+
+    function drawPlayer() {
+        ctx.fillStyle = 'yellow';
+        ctx.beginPath();
+        ctx.arc(player.x, player.y, player.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function drawGhosts() {
+        ctx.fillStyle = 'red';
+        ghosts.forEach(ghost => {
+            ctx.beginPath();
+            ctx.arc(ghost.x, ghost.y, ghost.size, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        });
+    }
+
+    function movePlayer() {
+        player.x += player.dx;
+        player.y += player.dy;
+
+        // Wall collision detection
+        if (player.x < player.size) player.x = player.size;
+        if (player.x > canvas.width - player.size) player.x = canvas.width - player.size;
+        if (player.y < player.size) player.y = player.size;
+        if (player.y > canvas.height - player.size) player.y = canvas.height - player.size;
+    }
+
+    function moveGhosts() {
+        ghosts.forEach(ghost => {
+            ghost.x += ghost.dx;
+            ghost.y += ghost.dy;
+
+            // Wall collision detection
+            if (ghost.x < ghost.size || ghost.x > canvas.width - ghost.size) ghost.dx *= -1;
+            if (ghost.y < ghost.size || ghost.y > canvas.height - ghost.size) ghost.dy *= -1;
+        });
+    }
+
+    function detectCollision() {
+        ghosts.forEach(ghost => {
+            const dist = Math.hypot(player.x - ghost.x, player.y - ghost.y);
+            if (dist < player.size + ghost.size) {
+                console.log('Game Over');
+                resetGame();
+            }
+        });
+    }
+
+    function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawPlayer();
+        drawGhosts();
+        movePlayer();
+        moveGhosts();
+        detectCollision();
+        requestAnimationFrame(update);
+    }
+
+    function startGame() {
+        document.addEventListener('keydown', keyDown);
+        document.addEventListener('keyup', keyUp);
+        update();
+    }
+
+    function resetGame() {
+        player.x = canvas.width / 2;
+        player.y = canvas.height / 2;
+        player.dx = 0;
+        player.dy = 0;
+    }
+
+    function keyDown(e) {
+        if (e.key === 'ArrowRight' || e.key === 'Right') player.dx = player.speed;
+        if (e.key === 'ArrowLeft' || e.key === 'Left') player.dx = -player.speed;
+        if (e.key === 'ArrowUp' || e.key === 'Up') player.dy = -player.speed;
+        if (e.key === 'ArrowDown' || e.key === 'Down') player.dy = player.speed;
+    }
+
+    function keyUp(e) {
+        if (e.key === 'ArrowRight' || e.key === 'Right') player.dx = 0;
+        if (e.key === 'ArrowLeft' || e.key === 'Left') player.dx = 0;
+        if (e.key === 'ArrowUp' || e.key === 'Up') player.dy = 0;
+        if (e.key === 'ArrowDown' || e.key === 'Down') player.dy = 0;
+    }
+</script>
